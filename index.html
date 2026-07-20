@@ -265,14 +265,20 @@
   }
 
   .slot-name {
-  font-size: 16px; 
-  font-weight: 800; /* Extra bold helps with outlines */
-  color: #fff;
-  /* Adds a true solid black outline */
-  -webkit-text-stroke: 1.5px #000; 
-  /* Creates a dark blurred halo behind it */
-  text-shadow: 0 0 10px rgba(0,0,0,1), 0 4px 6px rgba(0,0,0,0.8);
-  margin-top: 1px;
+  font-size: 15px;
+  font-weight: 800; /* Extra bold makes the fill clear */
+  color: #ffffff;
+  text-transform: uppercase; /* Uppercase reads faster on a pitch */
+  letter-spacing: 0.5px;
+  
+  /* 1. Strong black outline rendered BEHIND the text */
+  -webkit-text-stroke: 3.5px #0a0e0b;
+  paint-order: stroke fill;
+  
+  /* 2. Heavy soft shadow underneath to lift it off pitch lines */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
+  
+  margin-top: 2px;
   max-width: 110px;
   text-align: center;
   white-space: nowrap;
