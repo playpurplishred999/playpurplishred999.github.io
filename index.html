@@ -6,20 +6,21 @@
 <title>Squad Builder</title>
 <style>
   :root{
+    /* Dark theme color palette */
     --pitch-1: #1e7a3d;
     --pitch-2: #1a6d36;
     --pitch-line: rgba(255,255,255,0.85);
-    --ink: #0f1712;
-    --paper: #f4f7f3;
-    --panel: #ffffff;
-    --panel-border: #dde5dc;
-    --muted: #6b7770;
+    --ink: #e8ede9; /* Light text */
+    --paper: #121614; /* Dark main background */
+    --panel: #1a201d; /* Dark panel background */
+    --panel-border: #2c3630; /* Dark borders */
+    --muted: #8b9991; /* Lighter gray for secondary text */
     --main-team: #f2c94c;
-    --accent: #1e7a3d;
-    --accent-dark: #12471f;
-    --slot-empty: rgba(255,255,255,0.16);
-    --slot-empty-border: rgba(255,255,255,0.55);
-    --shadow: 0 8px 24px rgba(15, 23, 18, 0.12);
+    --accent: #2e9e54;
+    --accent-dark: #1e7a3d;
+    --slot-empty: rgba(0,0,0,0.3);
+    --slot-empty-border: rgba(255,255,255,0.4);
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 
   * { box-sizing: border-box; }
@@ -30,6 +31,7 @@
     background: var(--paper);
     color: var(--ink);
     font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+    color-scheme: dark; /* Helps native elements like dropdowns use dark mode */
   }
 
   body {
@@ -120,8 +122,8 @@
   }
 
   button.ghost:hover {
-    background: #eef2ec;
-    border-color: #c8d3c4;
+    background: #252e29;
+    border-color: #3d4a42;
   }
 
   main {
@@ -172,7 +174,7 @@
 
   .pitch-wrap {
     position: relative;
-    width: 100%;
+    width: 86%;
     aspect-ratio: 3 / 4;
     max-height: 78vh;
     margin: 0 auto;
@@ -186,6 +188,17 @@
       var(--pitch-2) 10%,
       var(--pitch-2) 20%
     );
+  }
+  
+  /* Top Left Image */
+  .pitch-logo {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 75px; /* Medium size */
+    height: auto;
+    z-index: 1; /* Sits below the player slots */
+    opacity: 0.85; /* Slight transparency to blend better */
   }
 
   svg.pitch-lines {
@@ -243,7 +256,7 @@
   }
 
   .slot-pos {
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 800;
     color: rgba(255,255,255,0.85);
     letter-spacing: 0.5px;
@@ -252,12 +265,12 @@
   }
 
   .slot-name {
-    font-size: 11.5px;
+    font-size: 14px;
     font-weight: 700;
     color: #fff;
     text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     margin-top: 1px;
-    max-width: 80px;
+    max-width: 100px;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
@@ -323,6 +336,7 @@
     border: 1px solid var(--panel-border);
     font-size: 13px;
     background: var(--paper);
+    color: var(--ink);
   }
 
   .roster-legend {
@@ -342,7 +356,7 @@
   }
 
   .legend-dot.main { background: var(--main-team); }
-  .legend-dot.sub { background: #bbb; }
+  .legend-dot.sub { background: #555; } /* Darkened the sub legend dot slightly */
 
   .roster-list {
     overflow-y: auto;
@@ -362,11 +376,11 @@
   }
 
   .roster-item:hover {
-    background: #f0f4ee;
+    background: #232c26; /* Dark hover */
   }
 
   .roster-item.selected {
-    background: #e9f5ec;
+    background: #1e3625; /* Dark selected state */
     border-color: var(--accent);
   }
 
@@ -378,10 +392,10 @@
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: #dfe6dc;
+    background: #2c3630;
     object-fit: cover;
     flex-shrink: 0;
-    border: 1px solid #d3dbcf;
+    border: 1px solid #3d4a42;
   }
 
   .roster-info {
@@ -398,7 +412,7 @@
     text-overflow: ellipsis;
   }
 
-  .roster-name.main-team { color: #b8901f; }
+  .roster-name.main-team { color: #dcb336; } /* Brightened slightly for dark mode */
 
   .roster-tag {
     font-size: 10.5px;
@@ -450,6 +464,10 @@
 <main>
   <div class="pitch-column">
     <div class="pitch-wrap" id="pitchWrap">
+        
+      <!-- MEDIUM SIZED IMAGE IN THE TOP LEFT -->
+      <img src="logo.png" alt="Logo" class="pitch-logo">
+
       <svg class="pitch-lines" viewBox="0 0 300 400" preserveAspectRatio="none">
         <rect x="4" y="4" width="292" height="392" fill="none" stroke="var(--pitch-line)" stroke-width="2"/>
         <line x1="4" y1="200" x2="296" y2="200" stroke="var(--pitch-line)" stroke-width="2"/>
